@@ -1,7 +1,12 @@
 Depot::Application.routes.draw do
+  get "products/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  root :to => 'Products#index'
+
+  resources :products
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
