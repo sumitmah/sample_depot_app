@@ -203,7 +203,7 @@ DEPENDENCIES
   factory_girl_rails
   growl_notify
   guard-rspec
-  haml-rails (>= 0.3.4)
+  haml-rails
   jquery-rails
   launchy
   mongoid (~> 3.0.0)
