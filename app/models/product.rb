@@ -7,5 +7,5 @@ class Product
   field :image_url, type: String
   field :price, type: Float
 
-
+  validates_presence_of :title
 end
