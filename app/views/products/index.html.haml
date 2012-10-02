@@ -1,6 +1,9 @@
 %h1 Products
 
-#content.products
-  - @products.each do |product|
-    %ul
-      %li= product.title
+#content
+  %ul.products
+    - @products.each do |product|
+      %li[product]
+        #{product.title} #{ link_to 'Destroy', {action:'destroy', controller:'products', id: product.id}, method: 'delete'}
+  %p
+    Add #{ link_to 'New Product', '/products/new'}

@@ -64,5 +64,20 @@ describe ProductsController do
     end
   end
 
+  describe "delete #destroy" do
+    context "with valid attributes" do
+      it "should delete a product" do
+        product = FactoryGirl.create(:product)
+        expect {
+          delete 'destroy', id: product.id
+        }.to change(Product, :count).by(-1)
+      end
 
+      it "redirects to the index" do
+        product = FactoryGirl.create(:product)
+        delete 'destroy', id: product.id
+        response.should be_redirect
+      end
+    end
+  end
 end
