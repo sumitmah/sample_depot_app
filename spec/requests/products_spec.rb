@@ -11,6 +11,19 @@ describe "Products" do
     end
   end
 
+  describe "GET #show" do
+    it "should display product information" do
+      product = FactoryGirl.create(:product)
+      visit products_path
+
+      within "#product_#{product.id}" do
+        click_link "View"
+      end
+
+      page.should have_content product.title
+    end
+  end
+
   describe "Manage products" do
     context "With valid attributes" do
       it "Adds a new product and displays the results" do
