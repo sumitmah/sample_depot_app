@@ -1,0 +1,4 @@
+= form_for :product, :url => product_path, :html => { :method => :put } do |form|
+  = form.label "Title"
+  = form.text_field "title"
+  = form.submit "Save Product"

@@ -4,6 +4,9 @@
   %ul.products
     - @products.each do |product|
       %li[product]
-        #{product.title} #{ link_to 'Destroy', {action:'destroy', controller:'products', id: product.id}, method: 'delete'}
+        #{product.title}
+        #{ link_to 'Edit', edit_product_path(product.id)}
+        #{ link_to 'Destroy', {action:'destroy', controller:'products', id: product.id}, method: 'delete'}
+
   %p
     Add #{ link_to 'New Product', '/products/new'}

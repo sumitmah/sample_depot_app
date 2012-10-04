@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-
+    @product = Product.find(params[:id])
   end
 
   def show
@@ -26,7 +26,13 @@ class ProductsController < ApplicationController
   end
 
   def update
-
+    @product = Product.find(params[:id])
+    product = params[:product]
+    if @product.update_attributes("title" => product[:title])
+      redirect_to(product_path)
+    else
+        render edit_product_path(@product.id)
+    end
   end
 
   def destroy

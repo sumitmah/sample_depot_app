@@ -37,6 +37,21 @@ describe "Products" do
         page.should have_content "Products"
         page.should_not have_content "Product1"
       end
+
+      it "should change the title of the product" do
+        product = FactoryGirl.create(:product)
+        visit products_path
+
+        within "#product_#{product.id}" do
+          click_link 'Edit'
+        end
+
+        fill_in 'product_title', with: "Product2"
+        click_button "Save Product"
+
+        page.should have_content "Product2"
+        page.should_not have_content product.title
+      end
     end
 
     context "With invalid attributes" do

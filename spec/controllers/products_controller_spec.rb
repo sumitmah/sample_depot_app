@@ -80,4 +80,28 @@ describe ProductsController do
       end
     end
   end
+
+  describe "GET #edit" do
+    context "with valid attributes" do
+      it "should edit a product" do
+        product = FactoryGirl.create(:product)
+        get 'edit', id: product.id
+        assigns(:product).should_not be_nil
+        response.should render_template :edit
+      end
+    end
+  end
+
+  describe "PUT #update" do
+    context "with valid attributes" do
+      it "should update the title of product" do
+        product = FactoryGirl.create(:product)
+        put :update, id: product.id, product: { title: "product12" }
+
+        response.should be_redirect
+        product.reload
+        product.title.should eq "product12"
+      end
+    end
+  end
 end
