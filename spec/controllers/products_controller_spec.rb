@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ProductsController do
-
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
@@ -26,12 +25,12 @@ describe ProductsController do
     context "with valid attributes" do
       it "creates a new product" do
         expect{
-          post :create, :title => "Hello"
+          post :create, :product => { :title => "Hello" }
         }.to change(Product,:count).by(1)
       end
 
       it "redirects to the new product" do
-        post :create, :title => "Hello"
+        post :create, :product => { :title => "Hello" }
         response.should be_redirect
       end
     end

@@ -1,1 +1,7 @@
 %h1= @product.title
+
+%ul#product_details
+  %li= @product.description
+  %li= @product.price
+  %img(src="#{@product.image_url}")
+

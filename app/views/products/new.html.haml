@@ -1,5 +1,23 @@
-%form(action=products_path method='POST')
-  %label
-    %b Title :
-  %input(type='text' name='title' value="")
-  %input(type='submit' value="Create Product" )
+= form_for :product, :url => products_path, :html => { :method => :post } do |form|
+  %ul
+    %li
+      = form.label "Title"
+      = form.text_field "title"
+    %li
+      = form.label "Description"
+    %p
+      = form.text_area "description"
+    %li
+      = form.label "Price"
+      = form.text_field "price"
+    %li
+      = form.label "Image Url"
+      = form.text_field "image_url"
+    %p
+      = form.submit "Create Product"
+-#
+-#= form_for(action=products_path method='POST')
+-#  %label
+-#    %b Title :
+-#  %input(type='text' name='title' value="")
+-#  %input(type='submit' value="Create Product" )

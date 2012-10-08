@@ -9,7 +9,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new({:title => params[:title]})
+    product_request = params[:product]
+    product = Product.new(product_request)
     if product.save
       redirect_to :action => :show, :id => product.id
     else
