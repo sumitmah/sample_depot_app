@@ -20,7 +20,13 @@ describe "Products" do
         click_link "View"
       end
 
-      page.should have_content product.title
+      within 'h1' do
+        page.should have_content "MyString"
+      end
+
+      page.should have_content "MyText"
+      page.should have_content "9.99"
+      page.should have_xpath "//img[@src='MyString']"
     end
   end
 
@@ -61,7 +67,7 @@ describe "Products" do
         page.should_not have_content "Product1"
       end
 
-      it "should change the title of the product" do
+      it "should change the attributes of the product" do
         product = FactoryGirl.create(:product)
         visit products_path
 
@@ -69,11 +75,22 @@ describe "Products" do
           click_link 'Edit'
         end
 
-        fill_in 'product_title', with: "Product2"
+        fill_in 'product_title', with: "My First Book"
+        fill_in 'product_description', with: "description"
+        fill_in 'product_price', with: "12"
+        fill_in 'product_image_url', with: "image_url"
+
         click_button "Save Product"
 
-        page.should have_content "Product2"
-        page.should_not have_content product.title
+        page.should have_content "My First Book"
+        page.should have_content "description"
+        page.should have_content "12"
+        page.should have_xpath "//img[@src='image_url']"
+
+        page.should_not have_content "MyString"
+        page.should_not have_content "MyText"
+        page.should_not have_content "9.99"
+        page.should_not have_xpath "//img[@src='MyString']"
       end
     end
 

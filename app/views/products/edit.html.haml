@@ -1,4 +1,17 @@
 = form_for :product, :url => product_path, :html => { :method => :put } do |form|
-  = form.label "Title"
-  = form.text_field "title"
-  = form.submit "Save Product"
+  %ul
+    %li
+      = form.label "Title"
+      = form.text_field "title"
+    %li
+      = form.label "Description"
+    %p
+      = form.text_area "description"
+    %li
+      = form.label "Price"
+      = form.text_field "price"
+    %li
+      = form.label "Image Url"
+      = form.text_field "image_url"
+    %p
+      = form.submit "Save Product"

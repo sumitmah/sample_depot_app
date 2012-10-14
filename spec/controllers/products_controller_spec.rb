@@ -95,11 +95,16 @@ describe ProductsController do
     context "with valid attributes" do
       it "should update the title of product" do
         product = FactoryGirl.create(:product)
-        put :update, id: product.id, product: { title: "product12" }
+        put :update, id: product.id, product: { title: "product12", price: "10.12", image_url: "image_url", description: "description" }
 
         response.should be_redirect
+
         product.reload
+
         product.title.should eq "product12"
+        product.description.should eq "description"
+        product.image_url.should eq "image_url"
+        product.price.should eq 10.12
       end
     end
   end

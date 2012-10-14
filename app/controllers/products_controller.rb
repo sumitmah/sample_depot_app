@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     product = params[:product]
-    if @product.update_attributes("title" => product[:title])
+    if @product.update_attributes(product)
       redirect_to(product_path)
     else
         render edit_product_path(@product.id)
