@@ -3,7 +3,8 @@
 .products
   %table
     - @products.each do |product|
-      %tr.product
+      %tr[product]
+
         %td= image_tag(product.image_url, class: 'list_image')
         %td.list_description
           %dl
