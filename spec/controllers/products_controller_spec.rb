@@ -25,12 +25,12 @@ describe ProductsController do
     context "with valid attributes" do
       it "creates a new product" do
         expect{
-          post :create, :product => { :title => "Hello" }
+          post :create, product: { title: "Hello", description: "description", image_url: "image_url.gif", price: "11.0" }
         }.to change(Product,:count).by(1)
       end
 
       it "redirects to the new product" do
-        post :create, :product => { :title => "Hello" }
+        post :create, product: { title: "Hello", description: "description", image_url: "image_url.gif", price: "11.0" }
         response.should be_redirect
       end
     end
@@ -95,7 +95,7 @@ describe ProductsController do
     context "with valid attributes" do
       it "should update the title of product" do
         product = FactoryGirl.create(:product)
-        put :update, id: product.id, product: { title: "product12", price: "10.12", image_url: "image_url", description: "description" }
+        put :update, id: product.id, product: { title: "product12", price: "10.12", image_url: "image_url.gif", description: "description" }
 
         response.should be_redirect
 
@@ -103,7 +103,7 @@ describe ProductsController do
 
         product.title.should eq "product12"
         product.description.should eq "description"
-        product.image_url.should eq "image_url"
+        product.image_url.should eq "image_url.gif"
         product.price.should eq 10.12
       end
     end

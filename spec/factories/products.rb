@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :product do
     title "MyString"
     description "MyText"
-    image_url "MyString"
+    image_url "MyString.gif"
     price "9.99"
   end
 end

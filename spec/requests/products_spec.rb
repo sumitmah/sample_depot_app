@@ -3,11 +3,14 @@ require 'spec_helper'
 describe "Products" do
   describe "GET /products" do
     it "should display some products" do
-      Product.create :title => 'Nokia 3110c'
+      product = Product.create(title: "Nokia 3110c", description: "Nokia 3110 classic", image_url: "mystring.gif", price: "10.0")
 
       visit products_path
 
-      page.should have_content 'Nokia 3110c'
+      within "#product_#{product.id}" do
+        page.should have_content "Nokia 3110c"
+        page.should have_content "Nokia 3110 classic"
+      end
     end
   end
 
@@ -26,7 +29,7 @@ describe "Products" do
 
       page.should have_content "MyText"
       page.should have_content "9.99"
-      page.should have_xpath "//img[@src='MyString']"
+      page.should have_xpath "//img[@src='MyString.gif']"
     end
   end
 
@@ -43,7 +46,7 @@ describe "Products" do
           fill_in 'product_image_url', with: image_url
           click_button "Create Product"
         }.to change(Product, :count).by(1)
-        #page.should have_content "Product was successfully created."
+
         within 'h1' do
           page.should have_content "My First Book"
         end
