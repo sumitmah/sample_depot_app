@@ -6,6 +6,12 @@ describe ProductsController do
       get 'index'
       response.should be_success
     end
+
+    it "should list some products" do
+      FactoryGirl.create(:product)
+      get 'index'
+      assigns(:products).should_not be_nil
+    end
   end
 
   describe "GET 'new'" do
