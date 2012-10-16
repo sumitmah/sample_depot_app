@@ -54,7 +54,7 @@ describe LineItemsController do
 
       it "should create new LineItem via Ajax" do
         expect {
-          xhr :create, {:product_id => @product.id}, valid_session
+          xhr :post, :create, {:product_id => @product.id}, valid_session
         }.to change(LineItem, :count).by(1)
 
         response.should be_success

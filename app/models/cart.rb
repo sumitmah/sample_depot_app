@@ -4,7 +4,6 @@ class Cart
   has_many :line_items, dependent: :destroy
 
   def add_product(product)
-    p line_items
     current_item = find_by_product_id(line_items, product.id)
     if current_item
       current_item.quantity += 1
