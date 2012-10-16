@@ -52,6 +52,15 @@ describe LineItemsController do
         @product = FactoryGirl.create(:product)
       end
 
+      it "should create new LineItem via Ajax" do
+        expect {
+          xhr :create, {:product_id => @product.id}, valid_session
+        }.to change(LineItem, :count).by(1)
+
+        response.should be_success
+
+      end
+
       it "creates a new LineItem" do
         expect {
           post :create, {:product_id => @product.id}, valid_session
@@ -66,7 +75,7 @@ describe LineItemsController do
 
       it "redirects to the created line_item" do
         post :create, {:product_id => @product.id}, valid_session
-        response.should redirect_to(LineItem.last.cart)
+        response.should redirect_to(store_index_path)
       end
     end
 

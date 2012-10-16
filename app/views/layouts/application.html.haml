@@ -13,6 +13,9 @@
       MyBook Shelf
     .columns
       .side
+        - if @cart
+          #cart(style="#{@cart.line_items.empty? ? 'display: none' : 'display: block' }" )
+            = render(@cart)
         %ul
           %li link1
           %li link2
